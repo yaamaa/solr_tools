@@ -9,7 +9,7 @@
   <script>
       function clickBtn1(){
 	      var txt_res;
-	      var en_txt = document.myform.mytext.value.replace('\\','');
+	      var en_txt = document.myform.mytext.value.replace(/\\/g, "");
 	      var txt_fr = en_txt.substring(0,en_txt.indexOf('?')+1);
 	      var txt_bk = en_txt.substring(en_txt.indexOf('?')+1);
 	      var txt_param = txt_bk.split('&');
