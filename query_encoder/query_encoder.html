@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>URL ENCODE FOR SOLR</HEAD>
+<BODY>
+  <p>取得した値 <span id="span1"></span></p>
+  <button id="btn" onclick="clickBtn1()">エンコード</button>
+  <form name="myform">
+     <textarea name="mytext" value="1" cols="200" rows="50" ></textarea>
+  </form>
+  <script>
+      function clickBtn1(){
+	      var txt_res;
+	      var en_txt = document.myform.mytext.value.replace('\\','');
+	      var txt_fr = en_txt.substring(0,en_txt.indexOf('?')+1);
+	      var txt_bk = en_txt.substring(en_txt.indexOf('?')+1);
+	      var txt_param = txt_bk.split('&');
+	      // パラメータ一つ一つをエンコードする
+	      for(var i=0;i < txt_param.length;i++){
+	         sn_fr = txt_param[i].substring(0,txt_param[i].indexOf('=')+1);
+	         sn_bk = txt_param[i].substring(txt_param[i].indexOf('=')+1);
+	         if(typeof sn_fr === "undefined" || typeof sn_bk === "undefined"){
+	         }
+	         else {
+		         txt_res += "&" + sn_fr;
+		         txt_res += encodeURIComponent(sn_bk);
+	         }
+	      }
+	      const cn = txt_fr+txt_res;
+	      document.myform.mytext.value = cn.replace('undefined&','');
+    }
+  </script>
+
+</BODY>
+</HTML>
